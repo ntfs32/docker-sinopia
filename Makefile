@@ -1,26 +1,26 @@
 rmi: stop-test
-	docker rmi keyvanfatehi/sinopia 2>&1 > /dev/null
+	docker rmi sinopia 2>&1 > /dev/null
 
 build:
-	docker build -t keyvanfatehi/sinopia:latest .
+	docker build -t sinopia:latest .
 
 start-test: stop-test build
-	docker run -p 4873:4873 --name sinopia-test -v /home/docker/sinopia-test:/opt/sinopia/storage keyvanfatehi/sinopia:latest
-	docker logs sinopia-test
+	docker run -p 4873:4873 --name sinopia -v /home/docker/sinopia:/opt/sinopia/storage sinopia:latest
+	docker logs sinopia
 
 stop-test:
-	-docker rm -f sinopia-test 2>&1 > /dev/null
+	-docker rm -f sinopia 2>&1 > /dev/null
 
 test: build
-	docker run --rm -i -t keyvanfatehi/sinopia:latest
+	docker run --rm -i -t sinopia:latest
 
 shell: build
-	docker run --rm -i -t keyvanfatehi/sinopia:latest /bin/bash
+	docker run --rm -i -t sinopia:latest /bin/bash
 
 logs:
-	docker logs sinopia-test
+	docker logs sinopia
 
 publish:
-	docker push keyvanfatehi/sinopia:latest
+	docker push sinopia:latest
 
 test: start-test
