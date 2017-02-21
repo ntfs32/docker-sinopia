@@ -3,7 +3,7 @@ MAINTAINER shaddock_hu <hushuang123a@gamil.com>
 RUN adduser --disabled-password --gecos "" sinopia
 RUN mkdir -p /opt/sinopia/storage
 WORKDIR /opt/sinopia
-RUN npm install cnpm
+RUN npm install cnpm --registry=https://registry.npm.taobao.org
 RUN node_modules/cnpm/bin/cnpm install js-yaml sinopia
 RUN chown -R sinopia:sinopia /opt/sinopia
 USER sinopia
