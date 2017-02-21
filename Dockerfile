@@ -1,7 +1,8 @@
 FROM node
 MAINTAINER shaddock_hu <hushuang123a@gamil.com>
 RUN adduser --disabled-password --gecos "" sinopia
-RUN mkdir -p /opt/sinopia/storage
+RUN mkdir -p /opt/sinopia/host/storage
+RUN mkdir -p /opt/sinopia/host/adsame_storage
 WORKDIR /opt/sinopia
 RUN chown -R sinopia:sinopia /opt/sinopia
 USER sinopia
@@ -14,6 +15,6 @@ ADD /sinopia-samman /opt/sinopia/node_modules/sinopia/sinopia-samman
 WORKDIR /opt/sinopia/node_modules/sinopia
 RUN npm install /opt/sinopia/node_modules/sinopia/sinopia-samman --registry=https://registry.npm.taobao.org
 ADD /start.sh /opt/sinopia/start.sh
-CMD ["/opt/sinopia/start.sh"]
+CMD ["/bin/bash /opt/sinopia/start.sh"]
 EXPOSE 4873
-VOLUME /opt/sinopia
+VOLUME /opt/sinopia/host/

@@ -7,7 +7,7 @@
 #
 
 # path to a directory with all packages
-storage: /opt/sinopia/storage
+storage: /tmp/storage
 
 auth:
   samman:
@@ -30,12 +30,13 @@ packages:
     # scoped packages
     access: $all
     publish: $authenticated
+    storage: '/opt/sinopia/host/storage'
 
   'adsame-*':
     access: $all
     publish: $authenticated
     # you can override storage directory for a group of packages this way:
-    storage: '/opt/sinopia/local_storage'
+    storage: '/opt/sinopia/host/adsame_storage'
 
   '*':
     # allow all users (including non-authenticated users) to read and
@@ -66,7 +67,7 @@ web:
   # this has a lot of issues, e.g. no auth yet, so use at your own risk
   enable: true
 
-  title: Adsame Npm Repository
+  title: 内网npm仓库
   # logo: logo.png
   # template: custom.hbs
 
